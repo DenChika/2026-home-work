@@ -22,6 +22,8 @@ public class InMemoryKVService implements KVService {
     private static final String METHOD_PUT = "PUT";
     private static final String METHOD_DELETE = "DELETE";
 
+    private static final String PARAM_ID = "id";
+
     private static final String PATH_STATUS = "/v0/status";
     private static final String PATH_ENTITY = "/v0/entity";
 
@@ -66,7 +68,7 @@ public class InMemoryKVService implements KVService {
         try {
             dao.close();
         } catch (IOException e) {
-            log.error("Failed to close DAO: " + e.getMessage());
+            log.error("Failed to close DAO", e);
         }
     }
 
@@ -136,7 +138,7 @@ public class InMemoryKVService implements KVService {
 
         for (String p : query.split("&")) {
             String[] kv = p.split("=", 2);
-            if (kv.length == 2 && "id".equals(kv[0])) {
+            if (kv.length == 2 && PARAM_ID.equals(kv[0])) {
                 return kv[1];
             }
         }
