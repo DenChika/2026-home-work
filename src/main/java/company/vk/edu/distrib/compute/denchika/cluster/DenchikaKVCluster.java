@@ -81,6 +81,7 @@ public class DenchikaKVCluster implements KVCluster {
     ) {
         return new ClusterKVService(port, grpcPort, dao, hasher, endpoint, grpcPorts);
     }
+
     private static int allocateFreePort() {
         try (ServerSocket socket = new ServerSocket(0)) {
             socket.setReuseAddress(true);
