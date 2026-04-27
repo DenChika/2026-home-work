@@ -71,7 +71,7 @@ public class GrpcClusterServer {
             try {
                 dao.upsert(request.getKey(), request.getValue().toByteArray());
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                throw new IllegalStateException(e);
             }
             responseObserver.onNext(PutResponse.getDefaultInstance());
             responseObserver.onCompleted();
